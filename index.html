@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>دانشنامه سبزینه | مرجع ۱۰,۰۰۰ گیاه دارویی</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1b5e20;
+      --primary-light: #2e7d32;
+      --primary-dark: #0f3d13;
+      --accent: #e65100;
+      --bg: #f4f7f4;
+      --surface: #ffffff;
+      --text: #212529;
+      --muted: #616161;
+      --border: #e0e6e0;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+    }
+
+    /* هدر لوکس */
+    header {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+      color: #fff;
+      padding: 24px 16px 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-md);
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+
+    header h1 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    header p {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      margin-top: 4px;
+      font-weight: 300;
+    }
+
+    .badge-counter {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      display: inline-block;
+      margin-top: 8px;
+      font-weight: 500;
+    }
+
+    /* کادر کنترل و جستجو */
+    .controls {
+      max-width: 800px;
+      width: 92%;
+      margin: -12px auto 16px;
+      background: var(--surface);
+      padding: 16px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .search-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 12px 42px 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.2s ease;
+      background: #fafdfa;
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+    }
+
+    .search-box .search-icon {
+      position: absolute;
+      right: 14px;
+      font-size: 1.1rem;
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    .search-box .clear-btn {
+      position: absolute;
+      left: 10px;
+      background: none;
+      border: none;
+      color: #999;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+
+    .filters-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      background-color: #fafdfa;
+      font-size: 0.85rem;
+      color: var(--text);
+      outline: none;
+      cursor: pointer;
+    }
+
+    select:focus {
+      border-color: var(--primary);
+    }
+
+    .action-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-fav {
+      background: #fff3e0;
+      color: #e65100;
+      border: 1.5px solid #ffe0b2;
+    }
+
+    .btn-fav.accent {
+      background: #e65100;
+      color: #fff;
+      border-color: #e65100;
+    }
+
+    .btn-reset {
+      background: #f1f3f4;
+      color: #424242;
+    }
+
+    /* وضعیت نتایج */
+    .status-bar {
+      max-width: 800px;
+      width: 92%;
+      margin: 0 auto 12px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding: 0 4px;
+    }
+
+    /* گرید کارت‌ها */
+    .container {
+      max-width: 800px;
+      width: 92%;
+      margin: 0 auto;
+      flex: 1;
+    }
+
+    .cards-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-bottom: 40px;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .card:active {
+      transform: scale(0.99);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .card-top h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin: 0;
+    }
+
+    .card-top .sci {
+      font-size: 0.82rem;
+      color: #757575;
+      font-style: italic;
+      direction: ltr;
+      text-align: right;
+    }
+
+    /* چیپ‌ها و برچسب‌ها */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .chip {
+      font-size: 0.74rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    /* برچسب‌های تفکیک مزاج */
+    .chip-hot { background: #fbe9e7; color: #d84315; }
+    .chip-cold { background: #e1f5fe; color: #0277bd; }
+    .chip-mod { background: #f1f8e9; color: #558b2f; }
+
+    .card-info {
+      font-size: 0.85rem;
+      color: #424242;
+      background: #fbfcfb;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px dashed var(--border);
+    }
+
+    .card-info b {
+      color: var(--primary);
+    }
+
+    .warn-box {
+      font-size: 0.8rem;
+      background: #fff8e1;
+      color: #b78103;
+      padding: 7px 10px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-bottom {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 4px;
+    }
+
+    .fav-btn {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #616161;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .fav-btn.active {
+      border-color: #ff9800;
+      background: #fff3e0;
+      color: #e65100;
+    }
+
+    /* وضعیت خالی */
+    #empty {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+
+    #empty svg {
+      width: 60px;
+      height: 60px;
+      stroke: #bdbdbd;
+      margin-bottom: 12px;
+    }
+
+    /* پاورقی */
+    footer {
+      text-align: center;
+      padding: 16px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      background: #fff;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🌿 دانشنامه سبزینه</h1>
+    <p>بانک جامع اطلاعات طب سنتی و گیاهان دارویی</p>
+    <div class="badge-counter">
+      ظرفیت فعال: <span id="total">۰</span> گیاه
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="q" placeholder="جستجو بر اساس نام، درد، یا خاصیت دارویی...">
+      <button class="clear-btn" id="clearBtn">✕</button>
+    </div>
+
+    <div class="filters-row">
+      <select id="nature">
+        <option value="">همه مزاج‌ها (طبع)</option>
+        <option value="1">گرم و خشک</option>
+        <option value="3">گرم و تر</option>
+        <option value="2">سرد و خشک</option>
+        <option value="4">معتدل</option>
+      </select>
+
+      <select id="category">
+        <option value="">همه دسته‌بندی‌ها</option>
+        <option value="اعصاب و خواب">اعصاب و خواب</option>
+        <option value="گوارش">دستگاه گوارش</option>
+        <option value="تنفسی و ایمنی">تنفسی و ایمنی</option>
+        <option value="کبد و خون">کبد و خون</option>
+        <option value="پوست و مو">پوست و مو</option>
+        <option value="قلب و عروق">قلب و عروق</option>
+        <option value="ادراری و کلیه">کلیه و مجاری</option>
+        <option value="مفاصل و استخوان">مفاصل و درد</option>
+      </select>
+    </div>
+
+    <div class="action-row">
+      <button class="btn btn-fav" id="favToggle">★ نشان‌شده‌ها</button>
+      <button class="btn btn-reset" id="reload">⟲ بازنشانی فیلترها</button>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <span>نمایش: <b id="count">۰</b> مورد</span>
+    <span>اسکرول برای مشاهده بقیه موارد</span>
+  </div>
+
+  <main class="container">
+    <div id="grid" class="cards-grid"></div>
+
+    <div id="empty">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <p>گیاهی با این مشخصات یافت نشد!</p>
+    </div>
+  </main>
+
+  <footer>
+    دانشنامه تخصصی گیاهان دارویی سبزینه • نسخه آزمایشی
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
