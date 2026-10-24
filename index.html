@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+  <title>اطلس گیاهان دارویی</title>
+  <style>
+:root {
+--bg: #0f172a;
+--card: #111827;
+--muted: #94a3b8;
+--text: #e5e7eb;
+--accent: #22c55e;
+--danger: #ef4444;
+--chip: #1f2937;
+}
+* { box-sizing: border-box; }
+body {
+margin: 0; background: var(--bg); color: var(--text); font-family: Vazirmatn, IRANSans, Segoe UI, Roboto, sans-serif;
+}
+header {
+position: sticky; top: 0; z-index: 10; backdrop-filter: blur(6px);
+background: rgba(15, 23, 42, 0.8); border-bottom: 1px solid #1f2937;
+}
+.wrap { max-width: 900px; margin: 0 auto; padding: 12px 16px; }
+.row { display: flex; gap: 8px; align-items: center; }
+.row > * { flex: 1; }
+input[type="search"] {
+width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid #334155;
+background: #0b1220; color: var(--text); outline: none;
+}
+.filters {
+margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap;
+}
+select, button {
+padding: 10px 12px; border-radius: 10px; border: 1px solid #334155;
+background: #0b1220; color: var(--text);
+}
+button.accent { background: var(--accent); border-color: var(--accent); color: #062e0f; }
+main { padding: 10px 0 70px; }
+.grid {
+display: grid; gap: 10px; grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+}
+.card {
+background: var(--card); border: 1px solid #1f2937; border-radius: 16px; padding: 12px;
+box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset;
+}
+.card h3 { margin: 0 0 4px; font-size: 18px; }
+.sci { color: var(--muted); font-size: 13px; margin: 0 0 8px; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.chip { background: var(--chip); color: #cbd5e1; padding: 4px 8px; border-radius: 999px; font-size: 12px; }
+.muted { color: var(--muted); font-size: 13px; }
+.footer {
+position: fixed; bottom: 0; left: 0; right: 0; background: rgba(15,23,42,.9);
+border-top: 1px solid #1f2937; padding: 8px 16px; display: flex; justify-content: space-between; gap: 8px;
+}
+.stat { font-size: 12px; color: var(--muted); }
+.fav { cursor: pointer; border: 1px solid #334155; border-radius: 10px; padding: 8px 10px; background:#0b1220 }
+.fav.active { background: #0c3; color: #062e0f; border-color: #0c3; }
+.warn { color: #fca5a5; font-size: 12px; margin-top: 6px; }
+.empty { text-align: center; color: var(--muted); padding: 32px 0; }
+  </style>
+</head>
+<body>
+  <header>
+<div class="wrap">
+<div class="row">
+<input id="q" type="search" placeholder="جستجو: نام گیاه، نام علمی، مشکل (مثلاً: سرفه، بی‌خوابی)" />
+<button id="clearBtn" title="پاک کردن جستجو">پاک</button>
+</div>
+<div class="filters">
+<select id="nature">
+<option value="">همه طبع‌ها</option>
+<option value="1">گرم و خشک</option>
+<option value="2">سرد و خشک</option>
+<option value="3">گرم و تر</option>
+<option value="4">معتدل</option>
+</select>
+<select id="category">
+<option value="">همه دسته‌ها</option>
+<option>اعصاب و خواب</option>
+<option>گوارش</option>
+<option>تنفسی و ایمنی</option>
+<option>کبد و خون</option>
+<option>پوست و مو</option>
+<option>قلب و عروق</option>
+<option>ادراری و کلیه</option>
+</select>
+<button id="favToggle">فقط علاقه‌مندی‌ها</button>
+<button id="reload" class="accent">بازنشانی</button>
+</div>
+</div>
+  </header>
+
+  <main class="wrap">
+<div id="grid" class="grid"></div>
+<div id="empty" class="empty" style="display:none">چیزی یافت نشد.</div>
+  </main>
+
+  <div class="footer">
+<div class="stat">
+<span id="count">0</span> مورد نمایش داده می‌شود · کل: <span id="total">0</span>
+</div>
+<div class="stat">اسکرول کنید تا موارد بیشتری بارگذاری شود</div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
