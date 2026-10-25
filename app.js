@@ -40,6 +40,14 @@ async function loadData() {
   }
 
   VIEW = ALL;
+   // اضافه کردن این بخش برای پیدا کردن نام واقعی کلیدها
+if (ALL.length > 0) {
+  console.log("نمونه اولین داده:", ALL[0]);
+  const debugBox = document.createElement('div');
+  debugBox.style.cssText = "background:#fff3cd; color:#856404; padding:10px; margin:10px; font-size:12px; direction:ltr; text-align:left; border:1px solid #ffeeba; border-radius:6px; word-break:break-all;";
+  debugBox.textContent = "Keys: " + JSON.stringify(ALL[0]);
+  document.body.prepend(debugBox);
+}
   updateCount();
   renderGrid(true);
   setupEvents();
