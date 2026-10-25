@@ -59,7 +59,7 @@ function resetFilters() {
 
 async function loadData() {
   try {
-    const res = await fetch('herbs_sample.json');
+    const res = await fetch('herbs_20k.json');
     ALL = await res.json();
   } catch (e) {
     console.error('خطا در خواندن فایل دیتا:', e);
