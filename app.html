@@ -1,167 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>گیاهان دارویی</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#245b3c">
+<title>دانشنامه گیاهان دارویی</title>
 <style>
-  :root { --bg:#f6f7f4; --card:#fff; --acc:#2e7d32; --acc2:#e8f0e9; --txt:#22301f; }
-  * { box-sizing:border-box; }
-  body { margin:0; font-family:Tahoma,"Segoe UI",Vazirmatn,sans-serif; background:var(--bg); color:var(--txt); }
-  header { position:sticky; top:0; z-index:5; background:var(--acc); color:#fff; padding:10px 14px; box-shadow:0 2px 6px rgba(0,0,0,.2); }
-  header h1 { margin:0 0 8px; font-size:18px; }
-  .searchwrap { display:flex; gap:8px; }
-  #q { flex:1; padding:10px 12px; font-size:16px; border:none; border-radius:8px; outline:none; direction:rtl; }
-  #cnt { font-size:12px; margin-top:6px; opacity:.9; }
-  main { padding:10px; max-width:640px; margin:0 auto; padding-bottom:60px; }
-  .item { display:flex; align-items:center; gap:12px; background:var(--card); border-radius:10px; padding:8px 12px; margin-bottom:8px; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,.08); }
-  .item:active { background:var(--acc2); }
-  .item img { width:52px; height:52px; border-radius:8px; object-fit:cover; background:#eee; flex-shrink:0; }
-  .item .nm { font-size:16px; }
-  .item .sci { font-size:12px; color:#777; direction:ltr; text-align:right; }
-  mark { background:#ffe082; padding:0 1px; border-radius:2px; }
-  .detail { background:var(--card); border-radius:12px; padding:16px; box-shadow:0 1px 4px rgba(0,0,0,.1); }
-  .detail h2 { margin:8px 0 2px; font-size:22px; }
-  .detail .sci { color:#666; direction:ltr; text-align:right; margin-bottom:6px; }
-  .chip { display:inline-block; background:var(--acc2); color:var(--acc); border-radius:999px; padding:3px 10px; font-size:13px; margin:2px; }
-  .sec { margin-top:14px; }
-  .sec h3 { font-size:15px; margin:0 0 6px; color:var(--acc); }
-  ul { margin:0; padding-inline-start:20px; }
-  li { margin-bottom:4px; line-height:1.7; }
-  .warn { background:#fff3e0; border-inline-start:4px solid #ef6c00; padding:10px 12px; border-radius:6px; margin-top:14px; font-size:14px; }
-  .btns { display:flex; gap:8px; margin-top:16px; flex-wrap:wrap; }
-  button, .webbtn { font-family:inherit; font-size:14px; padding:10px 14px; border:none; border-radius:8px; cursor:pointer; background:var(--acc); color:#fff; }
-  .webbtn { display:inline-block; text-decoration:none; }
-  .webbtn.wiki { background:#33691e; }
-  #back { background:rgba(255,255,255,.25); margin-bottom:8px; }
-  .empty { text-align:center; color:#888; padding:40px 0; }
+:root{--green:#245b3c;--deep:#183d2a;--leaf:#e9f3e8;--cream:#fbfaf5;--ink:#24352b;--muted:#68766c;--line:#dce6dc;--warn:#fff2dc;--warnink:#754609}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Tahoma,Arial,sans-serif;line-height:1.8}.topbar{position:sticky;top:0;z-index:5;background:rgba(251,250,245,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px max(14px,env(safe-area-inset-right)) 13px max(14px,env(safe-area-inset-left));box-shadow:0 2px 12px #23461a0b}.head-inner{max-width:980px;margin:auto}.brand{margin:0 0 8px;color:var(--deep);font-size:1.25rem;font-weight:800}.search-wrap{position:relative}.search-icon{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:1.1rem;color:var(--muted);pointer-events:none}#searchBox{width:100%;border:1px solid #c8d8ca;border-radius:14px;background:white;padding:12px 44px 12px 14px;font:inherit;font-size:16px;outline:none;box-shadow:0 2px 6px #17391d08}#searchBox:focus{border-color:var(--green);box-shadow:0 0 0 3px #4b8c5925}.hint{font-size:.78rem;color:var(--muted);margin:4px 3px 0}.container{max-width:980px;padding:16px 14px 45px;margin:auto}.notice{font-size:.82rem;color:#59685d;background:#f0f5ed;border:1px solid #e0eadd;padding:9px 12px;border-radius:12px;margin:0 0 14px}.results-meta{color:var(--muted);font-size:.87rem;margin:12px 3px}.grid{display:grid;grid-template-columns:1fr;gap:10px}.herb-card{display:flex;align-items:center;gap:13px;padding:10px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 3px 12px #203c1b08;min-height:104px;transition:transform .15s,border-color .15s}.herb-card:active{transform:scale(.99)}.image-button{width:78px;height:78px;flex:0 0 78px;border:0;padding:0;background:var(--leaf);border-radius:13px;overflow:hidden;cursor:pointer}.herb-img{width:100%;height:100%;display:block;object-fit:cover}.placeholder{display:grid;place-items:center;width:100%;height:100%;font-size:2rem;color:var(--green);background:linear-gradient(145deg,#eff7ea,#dcebdc)}.card-text{min-width:0;flex:1}.plant-name{display:inline-block;color:var(--deep);font-weight:800;font-size:1.02rem;text-decoration:none;line-height:1.5;cursor:pointer}.plant-sci{font-family:Georgia,serif;direction:ltr;text-align:right;color:var(--muted);font-size:.87rem;overflow-wrap:anywhere}.badge{display:inline-block;margin-top:5px;background:#e8f2e6;color:#315e3d;padding:1px 9px;border-radius:99px;font-size:.75rem}.more-row{text-align:center;padding:19px 0}.btn{font:inherit;border:0;border-radius:12px;padding:10px 17px;background:var(--green);color:#fff;cursor:pointer}.btn:hover{background:var(--deep)}.btn.secondary{background:#e7efe6;color:var(--deep)}.empty,.error{background:#fff;border:1px solid var(--line);padding:20px;border-radius:14px;color:var(--muted);text-align:center}.error{color:#8a2929;border-color:#efcaca}.hidden{display:none!important}.detail-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.detail-card{background:white;border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 4px 16px #203c1b08}.hero{display:flex;gap:15px;align-items:center;padding-bottom:14px;border-bottom:1px solid var(--line)}.detail-image{width:112px;height:112px;flex:0 0 112px;border-radius:16px;overflow:hidden;background:var(--leaf)}.detail-image img{width:100%;height:100%;object-fit:cover}.detail-title{min-width:0}.detail-title h2{font-size:1.35rem;color:var(--deep);margin:0 0 4px}.detail-title .plant-sci{font-size:.95rem}.facts{display:grid;grid-template-columns:1fr;gap:8px;margin:15px 0}.fact{padding:8px 11px;border-radius:11px;background:#f5f8f2}.fact b{color:var(--deep)}.section-title{font-size:1.08rem;color:var(--deep);margin:17px 0 7px}.tag-list{display:flex;flex-wrap:wrap;gap:7px;padding:0;list-style:none;margin:0}.tag-list li{padding:5px 10px;border-radius:10px;background:#edf4eb;font-size:.9rem}.warning{background:var(--warn);color:var(--warnink);border:1px solid #f1d6a7;border-radius:12px;padding:11px 13px}.wiki-box{border-top:1px solid var(--line);margin-top:18px;padding-top:8px}.wiki-text{white-space:pre-line;color:#47534a;font-size:.93rem}.wiki-links{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}.wiki-links a{color:var(--green);font-weight:700}.loading{color:var(--muted)}footer{text-align:center;color:var(--muted);font-size:.78rem;padding:20px 10px}@media(min-width:650px){.container{padding-top:22px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.brand{font-size:1.42rem}.detail-card{padding:22px}.hero{gap:20px}}@media(min-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 </head>
 <body>
-<header>
-  <div id="topbar" style="display:none"><button id="back">→ بازگشت به فهرست</button></div>
-  <h1>🌿 گیاهان دارویی</h1>
-  <div class="searchwrap"><input id="q" type="search" placeholder="جستجوی گیاه… (نام فارسی)" autocomplete="off"></div>
-  <div id="cnt"></div>
-</header>
-<main id="view"></main>
+<header class="topbar"><div class="head-inner"><h1 class="brand">🌿 دانشنامه گیاهان دارویی</h1><div class="search-wrap"><span class="search-icon">⌕</span><input id="searchBox" type="search" placeholder="جستجو در نام، نام علمی، دسته و کاربردها…" autocomplete="off" autofocus aria-label="جستجوی گیاهان"></div><div class="hint">جستجو در نام فارسی و علمی، دسته‌بندی، خواص و موارد مصرف</div></div></header>
+<main class="container"><div id="listView"><p class="notice">برای دریافت تصویر گیاهان و اطلاعات بیشتر از ویکی‌پدیا، اتصال به اینترنت لازم است. نام‌ها و محتوای این مجموعه ممکن است نیازمند بررسی تخصصی باشند.</p><div id="listError" class="error hidden"></div><div id="resultsMeta" class="results-meta" aria-live="polite"></div><div id="herbList" class="grid"></div><div class="more-row"><button id="moreBtn" class="btn secondary hidden" type="button">نمایش بیشتر</button></div></div>
+<section id="detailView" class="hidden" aria-live="polite"><div class="detail-top"><button id="backBtn" class="btn secondary" type="button">⬅ بازگشت به لیست</button><button id="searchAgainBtn" class="btn" type="button">جستجوی دوباره</button></div><div id="detailContent"></div></section></main><footer>دانشنامهٔ آفلاین گیاهان دارویی · برای تصاویر و اطلاعات برخط، اینترنت لازم است.</footer>
 <script src="herbs_20k.js"></script>
-
 <script>
-var FALLBACK = "data:image/svg+xml;utf8," + encodeURIComponent(
-  '<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160">' +
-  '<rect width="160" height="160" fill="#e8f0e9"/>' +
-  '<text x="80" y="92" font-size="64" text-anchor="middle">🌿</text></svg>');
-
-function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function escAttr(s){ return esc(s).replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
-
-// highlight matched prefix of query inside name (prefix-first, then substring)
-function hl(text, q){
-  var t = esc(text);
-  if(!q) return t;
-  var idx = text.toLowerCase().indexOf(q);
-  if(idx < 0) idx = text.indexOf(q);
-  if(idx < 0) return t;
-  return esc(text.slice(0,idx)) + '<mark>' + esc(text.slice(idx, idx+q.length)) + '</mark>' + esc(text.slice(idx+q.length));
-}
-
-var state = { view:'list', herb:null, q:'', scroll:0 };
-
-var qEl = document.getElementById('q');
-var view = document.getElementById('view');
-var cnt = document.getElementById('cnt');
-var topbar = document.getElementById('topbar');
-
-function normalize(s){
-  s = String(s).trim().toLowerCase();
-  s = s.replace(/\u064A/g,'\u06CC').replace(/\u0643/g,'\u06A9');
-  s = s.replace(/\u200C/g,' ').replace(/\u0622/g,'\u0627').replace(/\u0623/g,'\u0627').replace(/\u0625/g,'\u0627');
-  s = s.replace(/\u0629/g,'\u0647');
-  return s.replace(/\s+/g,' ');
-}
-var INDEX = HERBS.map(function(h,i){ return { i:i, n: h.faNorm || normalize(h.fa) }; });
-
-var shown = [];
-function doSearch(q){
-  state.q = q;
-  if(!q){ shown = HERBS.map(function(h,i){ return i; }).slice(0, 200); cnt.textContent = 'نمایش ' + shown.length + ' از ' + HERBS.length + ' گیاه — برای جستجو تایپ کنید'; renderList(); return; }
-  var nq = normalize(q), res = [];
-  for(var k=0;k<INDEX.length;k++){
-    var n = INDEX[k].n;
-    var p = n.indexOf(nq);
-    if(p === 0) res.push([0, INDEX[k].i]);
-    else if(p > 0) res.push([1, INDEX[k].i]);
-    if(res.length > 3000) break;
-  }
-  res.sort(function(a,b){ return a[0]-b[0] || a[1]-b[1]; });
-  shown = res.map(function(r){ return r[1]; }).slice(0, 300);
-  cnt.textContent = shown.length ? shown.length + ' نتیجه' : 'نتیجه‌ای یافت نشد';
-  renderList();
-}
-
-function renderList(){
-  state.view='list'; topbar.style.display='none';
-  if(!shown.length){ view.innerHTML = '<div class="empty">گیاهی با این نام پیدا نشد.</div>'; return; }
-  var html = '';
-  for(var k=0;k<shown.length;k++){
-    var h = HERBS[shown[k]];
-    html += '<div class="item" data-i="'+h.id+'" data-idx="'+shown[k]+'">' +
-      '<img src="'+escAttr(h.imageUrl)+'" alt="" loading="lazy" onerror="this.src=FALLBACK">' +
-      '<div><div class="nm">'+hl(h.fa, state.q)+'</div>' +
-      '<div class="sci">'+esc(h.sci||'')+'</div></div></div>';
-  }
-  view.innerHTML = html;
-}
-
-view.addEventListener('click', function(e){
-  var it = e.target.closest('.item');
-  if(it) openDetail(+it.getAttribute('data-idx'));
-});
-
-function openDetail(idx){
-  saveScroll();
-  state.view='detail'; state.herb=idx;
-  var h = HERBS[idx];
-  topbar.style.display='block';
-  var webBtns = '<div class="btns">' +
-    '<a class="webbtn" target="_blank" rel="noopener" href="https://www.google.com/search?hl=fa&q='+encodeURIComponent(h.fa)+'">🔎 جستجو در وب</a>' +
-    '<a class="webbtn wiki" target="_blank" rel="noopener" href="'+escAttr(h.wikiUrl)+'">📖 ویکی‌پدیا</a></div>';
-  view.innerHTML = '<div class="detail">' +
-    '<img src="'+escAttr(h.imageUrl)+'" alt="" style="width:96px;height:96px;border-radius:12px;object-fit:cover;background:#eee" onerror="this.src=FALLBACK">' +
-    '<h2>'+esc(h.fa)+'</h2>' +
-    (h.sci?'<div class="sci">'+esc(h.sci)+'</div>':'') +
-    '<div><span class="chip">'+esc(h.cat||'—')+'</span>'+(h.fam?'<span class="chip">'+esc(h.fam)+'</span>':'')+'</div>' +
-    (h.prop&&h.prop.length?'<div class="sec"><h3>خواص</h3><ul>'+h.prop.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul></div>':'') +
-    (h.ind&&h.ind.length?'<div class="sec"><h3>موارد مصرف</h3><ul>'+h.ind.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul></div>':'') +
-    (h.warn?'<div class="warn"><b>⚠️ هشدار:</b> '+esc(h.warn)+'</div>':'') +
-    webBtns + '</div>';
-  window.scrollTo(0,0);
-}
-
-document.getElementById('back').addEventListener('click', backToList);
-function backToList(){
-  state.view='list'; state.herb=null;
-  topbar.style.display='none';
-  doSearch(state.q);
-  window.scrollTo(0, state.scroll||0);
-}
-function saveScroll(){ if(state.view==='list') state.scroll = window.scrollY; }
-
-// live filtering on each character
-qEl.addEventListener('input', function(){ doSearch(qEl.value); });
-qEl.addEventListener('keydown', function(e){
-  if(e.key==='Enter' && shown.length){ openDetail(shown[0]); }
-});
-
-// cache data1.js via service worker for offline use
-if('serviceWorker' in navigator){
-  window.addEventListener('load', function(){
-    navigator.serviceWorker.register('sw.js').catch(function(){});
-  });
-}
-
-doSearch('');
+(function(){'use strict';
+const listView=document.getElementById('listView'),detailView=document.getElementById('detailView'),listEl=document.getElementById('herbList'),metaEl=document.getElementById('resultsMeta'),moreBtn=document.getElementById('moreBtn'),searchBox=document.getElementById('searchBox'),detailContent=document.getElementById('detailContent'),errorEl=document.getElementById('listError');
+const PAGE_SIZE=50;let query='',shown=PAGE_SIZE,filtered=[],activeHerb=null,priorScroll=0,debounceTimer=null,imageObserver=null;
+function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function arr(v){return Array.isArray(v)?v:[];}
+function placeholder(){return '<span class="placeholder" aria-label="تصویر در دسترس نیست">🌿</span>';}
+function cachedImage(id){try{return localStorage.getItem('herbimg_'+id)||'';}catch(_){return '';}}
+function safeImageUrl(url){return typeof url==='string'&&/^https:\/\//i.test(url)?url:'';}
+function summaryUrl(h){return 'https://fa.wikipedia.org/api/rest_v1/page/summary/'+encodeURIComponent(h.sci||h.fa||'');}
+function setImage(img,url){const safe=safeImageUrl(url);if(!safe)return false;img.src=safe;img.hidden=false;const p=img.parentElement.querySelector('.placeholder');if(p)p.remove();return true;}
+function fetchImage(h,img){const cached=cachedImage(h.id);if(cached){setImage(img,cached);return;}fetch(summaryUrl(h)).then(r=>{if(!r.ok)throw Error('network');return r.json();}).then(j=>{const url=safeImageUrl(j&&j.thumbnail&&j.thumbnail.source);if(!url)return;try{localStorage.setItem('herbimg_'+h.id,url);}catch(_){}if(img.isConnected)setImage(img,url);}).catch(()=>{});}
+function setupImageObserver(){if(imageObserver)imageObserver.disconnect();if(!('IntersectionObserver'in window)){document.querySelectorAll('img[data-herb-id]').forEach(img=>loadObserved(img));return;}imageObserver=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){imageObserver.unobserve(e.target);loadObserved(e.target);}});},{rootMargin:'180px'});document.querySelectorAll('img[data-herb-id]').forEach(img=>imageObserver.observe(img));}
+function loadObserved(img){const h=herbsData.find(x=>String(x.id)===img.dataset.herbId);if(h)fetchImage(h,img);}
+function searchable(h){return [h.fa,h.sci,h.cat,...arr(h.prop),...arr(h.ind)].filter(Boolean).join(' ').toLocaleLowerCase();}
+function applyFilter(){const q=query.trim().toLocaleLowerCase();filtered=herbsData.filter(h=>!q||searchable(h).includes(q));shown=PAGE_SIZE;renderList();}
+function cardHtml(h){const cached=cachedImage(h.id),image=cached?'<img class="herb-img" data-herb-id="'+esc(h.id)+'" alt="تصویر '+esc(h.fa)+'" src="'+esc(cached)+'">':'<img class="herb-img" data-herb-id="'+esc(h.id)+'" alt="تصویر '+esc(h.fa)+'" hidden>'+placeholder();return '<article class="herb-card"><button class="image-button" type="button" data-open="'+esc(h.id)+'" aria-label="نمایش '+esc(h.fa)+'">'+image+'</button><div class="card-text"><a class="plant-name" href="#herb-'+encodeURIComponent(String(h.id))+'" data-open="'+esc(h.id)+'">'+esc(h.fa)+'</a><div class="plant-sci">'+esc(h.sci)+'</div><span class="badge">'+esc(h.cat||'بدون دسته')+'</span></div></article>';}
+function renderList(){if(typeof herbsData==='undefined'||!Array.isArray(herbsData)){errorEl.textContent='خطا: فایل herbs_20k.js بارگذاری نشده یا آرایهٔ داده‌ها وجود ندارد.';errorEl.classList.remove('hidden');return;}errorEl.classList.add('hidden');const batch=filtered.slice(0,shown);listEl.innerHTML=batch.map(cardHtml).join('');metaEl.textContent='نمایش '+batch.length+' از '+filtered.length+' گیاه';moreBtn.classList.toggle('hidden',shown>=filtered.length);setupImageObserver();}
+function wikiFallback(h){const google='https://www.google.com/search?q='+encodeURIComponent((h.fa||'')+' خواص گیاه');return '<p class="wiki-text">برای اطلاعات بیشتر به اینترنت نیاز است.</p><div class="wiki-links"><a href="'+esc(google)+'" target="_blank" rel="noopener noreferrer">جستجو در گوگل برای اطلاعات بیشتر ↗</a></div>';}
+function makeDetail(h){const cached=cachedImage(h.id),imgHtml=cached?'<img id="detailImg" alt="تصویر '+esc(h.fa)+'" src="'+esc(cached)+'">':'<img id="detailImg" alt="تصویر '+esc(h.fa)+'" hidden>'+placeholder();const natMap={1:'گرم',2:'سرد',3:'معتدل'},nat=natMap[h.nat]?'طبع: '+natMap[h.nat]+' (کد '+esc(h.nat)+')':'طبع: نامشخص (کد '+esc(h.nat)+')';const tagSection=(title,values)=>'<h3 class="section-title">'+title+'</h3>'+(values.length?'<ul class="tag-list">'+values.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>':'<p class="loading">موردی ثبت نشده است.</p>');detailContent.innerHTML='<article class="detail-card"><div class="hero"><div class="detail-image">'+imgHtml+'</div><div class="detail-title"><h2>'+esc(h.fa)+'</h2><div class="plant-sci">'+esc(h.sci)+'</div></div></div><div class="facts"><div class="fact"><b>خانواده:</b> '+esc(h.fam||'نامشخص')+'</div><div class="fact"><b>منشأ/ناحیه:</b> '+esc(h.nat==null?'نامشخص':h.nat)+'</div><div class="fact"><b>'+nat+'</b></div><div class="fact"><b>دسته:</b> '+esc(h.cat||'بدون دسته')+'</div></div>'+tagSection('خواص',arr(h.prop))+tagSection('موارد مصرف',arr(h.ind))+(h.warn?'<h3 class="section-title">هشدار</h3><div class="warning">⚠️ '+esc(h.warn)+'</div>':'')+'<section class="wiki-box"><h3 class="section-title">اطلاعات بیشتر از وب</h3><div id="wikiResult" class="loading">در حال دریافت اطلاعات از ویکی‌پدیا…</div></section></article>';if(!cached){const img=document.getElementById('detailImg');fetchImage(h,img);}loadWiki(h);}
+function loadWiki(h){const box=document.getElementById('wikiResult');if(!box)return;const title=h.sci||h.fa;const api='https://fa.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&explaintext=1&exchars=3500&titles='+encodeURIComponent(title);Promise.all([fetch(summaryUrl(h)).then(r=>{if(!r.ok)throw Error();return r.json();}).catch(()=>null),fetch(api).then(r=>{if(!r.ok)throw Error();return r.json();}).catch(()=>null)]).then(([summary,queryData])=>{if(!box.isConnected)return;let extract='';if(queryData&&queryData.query&&queryData.query.pages){const pg=Object.values(queryData.query.pages)[0];if(pg&&pg.extract)extract=pg.extract;}const pageUrl=summary&&summary.content_urls&&summary.content_urls.desktop&&summary.content_urls.desktop.page;const google='https://www.google.com/search?q='+encodeURIComponent((h.fa||'')+' خواص گیاه');let links='';if(pageUrl)links+='<a href="'+esc(safeImageUrl(pageUrl)||'#')+'" target="_blank" rel="noopener noreferrer">مشاهده در ویکی‌پدیا ↗</a>';else if(summary&&summary.title)links+='<a href="https://fa.wikipedia.org/wiki/'+encodeURIComponent(summary.title)+'" target="_blank" rel="noopener noreferrer">مشاهده در ویکی‌پدیا ↗</a>';links+='<a href="'+esc(google)+'" target="_blank" rel="noopener noreferrer">جستجوی وب ↗</a>';box.innerHTML=(extract?'<p class="wiki-text">'+esc(extract)+'</p>':'<p class="wiki-text">برای اطلاعات بیشتر به اینترنت نیاز است.</p>')+'<div class="wiki-links">'+links+'</div>';});}
+function openDetail(id,push){const h=herbsData.find(x=>String(x.id)===String(id));if(!h)return;priorScroll=window.scrollY;activeHerb=h;makeDetail(h);listView.classList.add('hidden');detailView.classList.remove('hidden');if(push)history.pushState({view:'detail',id:h.id,scroll:priorScroll},'','#herb-'+encodeURIComponent(String(h.id)));window.scrollTo(0,0);}
+function showList(restore){detailView.classList.add('hidden');listView.classList.remove('hidden');activeHerb=null;if(restore)window.scrollTo(0,priorScroll);}
+if(typeof herbsData==='undefined'||!Array.isArray(herbsData)){renderList();}else{filtered=herbsData;renderList();history.replaceState({view:'list'},' ',location.pathname+location.search);}
+searchBox.addEventListener('input',()=>{query=searchBox.value;clearTimeout(debounceTimer);debounceTimer=setTimeout(()=>{applyFilter();if(!detailView.classList.contains('hidden'))showList(false);},160);});
+moreBtn.addEventListener('click',()=>{shown=Math.min(shown+PAGE_SIZE,filtered.length);renderList();});
+listEl.addEventListener('click',e=>{const target=e.target.closest('[data-open]');if(target){e.preventDefault();openDetail(target.dataset.open,true);}});
+document.getElementById('backBtn').addEventListener('click',()=>{if(history.state&&history.state.view==='detail')history.back();else showList(true);});
+document.getElementById('searchAgainBtn').addEventListener('click',()=>{if(history.state&&history.state.view==='detail')history.back();else showList(true);searchBox.focus();});
+window.addEventListener('popstate',e=>{if(e.state&&e.state.view==='detail'){const h=herbsData.find(x=>String(x.id)===String(e.state.id));if(h){priorScroll=e.state.scroll||priorScroll;activeHerb=h;makeDetail(h);listView.classList.add('hidden');detailView.classList.remove('hidden');window.scrollTo(0,0);}}else{showList(true);}});
+})();
 </script>
-</body>
-</html>
+</body></html>
